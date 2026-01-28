@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import fetch from 'node-fetch';
-import { chat } from './llm.js';
+import { chat } from '../llm.js';
 
 const app = express();
 
@@ -11,9 +11,8 @@ const messages = [
 ];
 
 app.use(bodyParser.json());
-app.use(express.static('public')); // this will serve public/index.html at "/"
 
-// API routes
+// API routes (these will live under /api/* automatically)
 app.get('/model', (req, res) => {
   res.json({ model: currentModel });
 });
@@ -28,7 +27,7 @@ app.post('/model', (req, res) => {
   }
 });
 
-app.get('/api/models', async (req, res) => {
+app.get('/models', async (req, res) => {
   try {
     const response = await fetch('https://openrouter.ai/api/v1/models');
     const data = await response.json();
@@ -52,5 +51,3 @@ app.post('/chat', async (req, res) => {
 });
 
 export default app;
-
-
