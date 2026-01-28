@@ -5,7 +5,7 @@ import { chat } from './index.js';
 
 const app = express();
 const port = 3000;
-
+app.get("/", (req, res) => { res.send("openrouter-test is live"); });
 let currentModel = 'openai/gpt-3.5-turbo';
 const messages = [
   {
