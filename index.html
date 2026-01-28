@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>OpenRouter LLM Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>OpenRouter LLM Dashboard</h1>
+  <div id="main-container">
+    <div id="settings-container">
+      <h2>Settings</h2>
+      <form id="model-form">
+        <label for="model">Select a model:</label>
+        <select id="model" name="model">
+          <option value="openai/gpt-3.5-turbo">OpenAI GPT-3.5 Turbo</option>
+          <option value="google/gemini-pro">Google Gemini Pro</option>
+          <option value="anthropic/claude-2">Anthropic Claude 2</option>
+        </select>
+        <br><br>
+        <input type="submit" value="Save">
+      </form>
+    </div>
+    <div id="chat-container">
+      <h2>Chat</h2>
+      <div id="chatbox"></div>
+      <form id="chat-form">
+        <input type="text" id="chat-input" placeholder="Type your message...">
+        <input type="submit" value="Send">
+      </form>
+    </div>
+  </div>
+  <script src="dashboard.js"></script>
+  <footer>
+    <p>Powered by OpenRouter</p>
+  </footer>
+</body>
+</html>
