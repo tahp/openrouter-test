@@ -90,7 +90,7 @@ chatForm.addEventListener('submit', async (event) => {
   addMessage(message, 'user');
 
   try {
-    const response = await fetch('/api/chat', {
+    const response = await fetch('/api/index/chat', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
