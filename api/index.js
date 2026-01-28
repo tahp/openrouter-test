@@ -40,13 +40,15 @@ app.get('/models', async (req, res) => {
 
 app.post('/chat', async (req, res) => {
   const { message } = req.body;
-  if (message) {
+
+  try {
     messages.push({ role: 'user', content: message });
     const reply = await chat(messages, currentModel);
     messages.push({ role: 'assistant', content: reply });
     res.json({ reply });
-  } else {
-    res.status(400).send('Message not provided');
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ error: 'LLM failed' });
   }
 });
 
