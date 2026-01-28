@@ -4,7 +4,7 @@ const modelSelect = document.getElementById('model');
 // Function to fetch models and populate the dropdown
 async function populateModels() {
   try {
-    const response = await fetch('/api/index/models');
+    const response = await fetch('/api/models');
     const data = await response.json();
     const models = data.data; // OpenRouter API returns models in a 'data' array
 
@@ -20,7 +20,7 @@ async function populateModels() {
     });
 
     // Fetch and set the current model
-    const currentModelResponse = await fetch('/api/index/model');
+    const currentModelResponse = await fetch('/api/model');
     const currentModelData = await currentModelResponse.json();
     modelSelect.value = currentModelData.model;
 
@@ -50,7 +50,7 @@ modelForm.addEventListener('submit', async (event) => {
   }
 
   try {
-    const response = await fetch('/api/index/model', {
+    const response = await fetch('/api/model', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -90,7 +90,7 @@ chatForm.addEventListener('submit', async (event) => {
   addMessage(message, 'user');
 
   try {
-    const response = await fetch('/api/index/chat', {
+    const response = await fetch('/api/chat', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
