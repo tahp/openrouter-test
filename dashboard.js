@@ -81,9 +81,9 @@ function addMessage(message, sender) {
   chatbox.scrollTop = chatbox.scrollHeight;
 }
 
-chatForm.addEventListener('submit', async (event) => {
-  event.preventDefault();
+const sendBtn = document.getElementById('send-btn');
 
+sendBtn.addEventListener('click', async () => {
   const message = chatInput.value;
   chatInput.value = '';
 
@@ -92,9 +92,7 @@ chatForm.addEventListener('submit', async (event) => {
   try {
     const response = await fetch('/api/chat', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ message }),
     });
 
