@@ -13,9 +13,6 @@ const messages = [
 app.use(bodyParser.json());
 app.use(express.static('.'));
 
-app.get("/", (req, res) => {
-  res.send("openrouter-test is live");
-});
 
 app.get('/model', (req, res) => {
   res.json({ model: currentModel });
