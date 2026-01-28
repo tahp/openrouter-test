@@ -2,6 +2,8 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import fetch from 'node-fetch';
 import { chat } from './index.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 const app = express();
 
@@ -11,7 +13,14 @@ const messages = [
 ];
 
 app.use(bodyParser.json());
-app.use(express.static('.'));
+app.use(express.static('public'));
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 
 app.get('/model', (req, res) => {
@@ -52,3 +61,8 @@ app.post('/chat', async (req, res) => {
 });
 
 export default app;
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(3000, () => {
+    console.log('Server listening at http://localhost:3000');
+  });
+}
