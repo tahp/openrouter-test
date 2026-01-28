@@ -2,8 +2,6 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import fetch from 'node-fetch';
 import { chat } from './llm.js';
-import path from 'path';
-import { fileURLToPath } from 'url';
 
 const app = express();
 
@@ -13,15 +11,9 @@ const messages = [
 ];
 
 app.use(bodyParser.json());
-app.use(express.static('public'));
+app.use(express.static('public')); // this will serve public/index.html at "/"
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
-
-
+// API routes
 app.get('/model', (req, res) => {
   res.json({ model: currentModel });
 });
@@ -60,6 +52,7 @@ app.post('/chat', async (req, res) => {
 });
 
 export default app;
+
 if (process.env.NODE_ENV !== 'production') {
   app.listen(3000, () => {
     console.log('Server listening at http://localhost:3000');
