@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import fetch from 'node-fetch';
-import { chat } from './index.js';
+import { chat } from './llm.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -17,7 +17,6 @@ app.use(express.static('public'));
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
