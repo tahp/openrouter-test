@@ -53,8 +53,4 @@ app.post('/chat', async (req, res) => {
 
 export default app;
 
-if (process.env.NODE_ENV !== 'production') {
-  app.listen(3000, () => {
-    console.log('Server listening at http://localhost:3000');
-  });
-}
+
