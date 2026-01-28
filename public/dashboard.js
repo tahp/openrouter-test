@@ -20,7 +20,7 @@ async function populateModels() {
     });
 
     // Fetch and set the current model
-    const currentModelResponse = await fetch('/model');
+    const currentModelResponse = await fetch('/api/model');
     const currentModelData = await currentModelResponse.json();
     modelSelect.value = currentModelData.model;
 
@@ -50,7 +50,7 @@ modelForm.addEventListener('submit', async (event) => {
   }
 
   try {
-    const response = await fetch('/model', {
+    const response = await fetch('/api/model', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -90,7 +90,7 @@ chatForm.addEventListener('submit', async (event) => {
   addMessage(message, 'user');
 
   try {
-    const response = await fetch('/chat', {
+    const response = await fetch('/api/chat', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
